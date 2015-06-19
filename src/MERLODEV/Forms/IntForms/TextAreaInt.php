@@ -1,5 +1,12 @@
 <?php 
 namespace MERLODEV\Forms\IntForms;
 interface TextAreaInt{
-    function addTextArea($name, $id, $cols = null, $rows = null, $placeholder = null, $title = null);
+    function addTextArea();
+    function getCols();
+    function getId();
+    function getName();
+    function getPlaceholder();
+    function getRows();
+    function getTitle();
+
 }

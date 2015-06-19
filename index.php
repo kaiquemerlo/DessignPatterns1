@@ -2,24 +2,46 @@
 
 require_once 'autoload.php';
 
-$inputs    = array();
-$textareas = array();
-$buttons   = array();
-
-$input = new MERLODEV\Forms\AddForm\Input();
+$input    = new MERLODEV\Forms\AddForm\Input();
 $textarea = new MERLODEV\Forms\AddForm\TextArea();
-$button = new MERLODEV\Forms\AddForm\Button();
+$button   = new MERLODEV\Forms\AddForm\Button();
 
-$inputs[] = $input->addInput('name', 'name', 'text', 'Informe o seu nome!', '', 'Nome:');
-$inputs[] = $input->addInput('pass', 'pass', 'password', 'Informe a sua senha!', '', 'Senha:');
+$input->setId('nome')
+            ->setName('nome')
+            ->setType('text')
+            ->setTitle('Nome:');
+$input1 = $input->addInput();
+$input->setId('pass')
+    ->setName('pass')
+    ->setType('password')
+    ->setTitle('Senha:');
+$input2 = $input->addInput();
 
-$textareas[] = $textarea->addTextArea('Assunto', 'Assunto', '29', '5', 'Digite sua mensagem', '');
+$textarea->setId('mensagem')
+                ->setName('mensagem')
+                ->setCols(29)
+                ->setRows(5)
+                ->setPlaceholder('Digite sua mensagem');
+$textarea1 = $textarea->addTextArea();
 
-$inputs[] = $input->addInput('pass', 'pass', 'checkbox', '', 'Receber newsletter');
+$input->setId('news')
+        ->setName('news')
+        ->setType('checkbox')
+        ->setTitle('')
+        ->setLabel('Receber newsletter');
+$input3 = $input->addInput();
 
-$buttons[] = $button->addButton('enviar', 'enviar', 'submit', 'Enviar');
-
-$campos = array_merge($inputs, $textareas, $buttons);
+$button->setId('enviar')
+        ->setName('enviar')
+        ->setValue('Enviar')
+        ->setType('submit');
+$button1 = $button->addButton();
 
 $form = new MERLODEV\Forms\Form('index.php', 'post');
-$form->render($campos);
+$form->addCampo($input1);
+$form->addCampo($input2);
+$form->addCampo($input3);
+$form->addCampo($textarea1);
+$form->addCampo($button1);
+$form->render();
+

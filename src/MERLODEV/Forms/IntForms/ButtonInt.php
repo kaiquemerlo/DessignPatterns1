@@ -1,7 +1,11 @@
 <?php
 namespace MERLODEV\Forms\IntForms;
 interface ButtonInt{
-    function AddButton($name, $id, $type, $value);
+    function AddButton();
+    function getId();
+    function getName();
+    function getType();
+    function getValue();
 }
 
 ?>

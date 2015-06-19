@@ -1,19 +1,22 @@
 <?php 
 namespace MERLODEV\Forms;
 class Form{    
-    
-    private $action;
-    private $method;
-    
+
+    private $campo;
+
     public function __construct($action = null, $method = null){
         $this->action = $action;
         $this->method = $method;
     }
+
+    public function addCampo($campo){
+        $this->campo[] = $campo;
+    }
     
-    public function render($campos){
-        if(!empty($campos) AND $campos != null){
+    public function render(){
+        if(!empty($this->campo) AND $this->campo != null){
             echo "<form action='{$this->action}' method='{$this->method}' enctype='multipart/formdata'>";
-            foreach($campos as $cmp){
+            foreach($this->campo as $cmp){
                 echo $cmp."</br></br>";
             }  
             echo "</form>";
